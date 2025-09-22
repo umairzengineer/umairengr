@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,35 +10,53 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark theme sophisticated portfolio colors */
+    --background: 222 22% 5%;
+    --foreground: 220 20% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 222 22% 8%;
+    --card-foreground: 220 20% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 222 22% 8%;
+    --popover-foreground: 220 20% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Sophisticated blue-purple gradient system */
+    --primary: 252 82% 68%;
+    --primary-foreground: 222 22% 5%;
+    --primary-dark: 252 82% 58%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 222 22% 12%;
+    --secondary-foreground: 220 20% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 222 22% 10%;
+    --muted-foreground: 220 10% 70%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 284 82% 70%;
+    --accent-foreground: 222 22% 5%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 220 20% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 222 22% 15%;
+    --input: 222 22% 12%;
+    --ring: 252 82% 68%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Portfolio-specific design tokens */
+    --hero-gradient: linear-gradient(135deg, hsl(252 82% 68%) 0%, hsl(284 82% 70%) 100%);
+    --card-gradient: linear-gradient(145deg, hsl(222 22% 8%) 0%, hsl(222 22% 10%) 100%);
+    --text-gradient: linear-gradient(135deg, hsl(252 82% 68%) 0%, hsl(284 82% 70%) 100%);
+    
+    /* Shadows and glows */
+    --shadow-elegant: 0 20px 40px -12px hsl(222 22% 2% / 0.8);
+    --shadow-card: 0 8px 32px -8px hsl(222 22% 2% / 0.6);
+    --glow-primary: 0 0 40px hsl(252 82% 68% / 0.3);
+    --glow-accent: 0 0 40px hsl(284 82% 70% / 0.3);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +121,86 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Gradient text utility */
+  .gradient-text {
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary-dark));
+  }
+
+  /* Hero section animations */
+  .hero-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Card hover effects */
+  .card-hover {
+    transition: var(--transition-smooth);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-elegant);
+  }
+
+  /* Button variants */
+  .btn-hero {
+    background: var(--hero-gradient);
+    color: hsl(var(--primary-foreground));
+    border: none;
+    box-shadow: var(--glow-primary);
+    transition: var(--transition-smooth);
+  }
+
+  .btn-hero:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--glow-primary), var(--shadow-elegant);
+  }
+
+  .btn-outline-glow {
+    background: transparent;
+    border: 1px solid hsl(var(--primary));
+    color: hsl(var(--primary));
+    transition: var(--transition-smooth);
+  }
+
+  .btn-outline-glow:hover {
+    background: hsl(var(--primary) / 0.1);
+    box-shadow: var(--glow-primary);
+    transform: translateY(-2px);
   }
 }
