@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -8,6 +9,11 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Theme toggle */}
+      <div className="absolute top-6 right-6 z-20">
+        <ThemeToggle />
+      </div>
+      
       {/* Background gradient orbs */}
       <div className="absolute top-20 left-20 w-72 h-72 bg-primary/20 rounded-full blur-3xl hero-float"></div>
       <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent/20 rounded-full blur-3xl hero-float" style={{ animationDelay: '2s' }}></div>
